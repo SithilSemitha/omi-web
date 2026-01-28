@@ -55,7 +55,7 @@ function App() {
     });
 
     newSocket.on('your-cards', (cards) => {
-      setPlayerCards(cards);
+      setPlayerCards(Array.isArray(cards) ? cards.slice(0, 8) : []);
     });
 
     newSocket.on('game-started', () => {
@@ -122,7 +122,12 @@ function App() {
           Leave Game
         </button>
       </div>
-      {gameState.gameState === 'waiting' && (
+      {hasJoined && !gameState && (
+        <div className="waiting-screen">
+          <p>Connecting...</p>
+        </div>
+      )}
+      {gameState?.gameState === 'waiting' && (
         <div className="waiting-screen">
           <h2>Waiting for players...</h2>
           <p>Current players: {gameState.players.length} / 4</p>
@@ -135,7 +140,7 @@ function App() {
           </div>
         </div>
       )}
-      {gameState.gameState === 'playing' && (
+      {gameState?.gameState === 'playing' && (
         <GameBoard
           gameState={gameState}
           playerCards={playerCards}
@@ -144,19 +149,23 @@ function App() {
           trumpSuit={trumpSuit}
         />
       )}
-      {gameState.gameState === 'finished' && (
+      {gameState?.gameState === 'finished' && (
         <div className="finished-screen">
-          <h2>Game Finished!</h2>
-          <div className="final-scores">
-            {gameState.players
-              .sort((a, b) => b.score - a.score)
-              .map((player, index) => (
-                <div key={player.id} className="score-item">
-                  <span className="rank">#{index + 1}</span>
-                  <span className="name">{player.name} {player.id === playerId && '(You)'}</span>
-                  <span className="score">{player.score} points</span>
+          <h2>Game over</h2>
+          <div className="final-scores teams-finished">
+            {[0, 1].map((t) => {
+              const me = gameState.players.find((p) => p.id === playerId);
+              const isMyTeam = me && (me.teamIndex === t);
+              return (
+                <div key={t} className={`team-score-box ${isMyTeam ? 'your-team' : ''}`}>
+                  <span className="team-label">Team {t + 1}{isMyTeam ? ' (You)' : ''}</span>
+                  <span className="team-tokens">{gameState.teamTokens[t] ?? 0} tokens</span>
                 </div>
-              ))}
+              );
+            })}
+            <p className="winner-msg">
+              {(gameState.teamTokens[0] ?? 0) >= 10 ? 'Team 1 wins!' : 'Team 2 wins!'}
+            </p>
           </div>
           <button onClick={handleLeaveGame} className="leave-btn">
             Return to Lobby
