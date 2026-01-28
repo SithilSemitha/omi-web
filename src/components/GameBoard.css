@@ -1,85 +1,107 @@
+/* Sri Lankan Omi – game board layout */
 .game-board {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  padding: 20px;
-  color: white;
+  background: linear-gradient(160deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  padding: 16px;
+  color: #eee;
 }
 
 .game-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .trump-display {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .trump-label {
   font-weight: 600;
+  opacity: 0.9;
 }
 
 .trump-suit {
-  font-size: 2em;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
 .trump-suit.red {
-  color: #ff4444;
+  color: #e74c3c;
 }
 
 .trump-suit.black {
-  color: #333;
+  color: #2c3e50;
 }
 
 .round-info {
-  font-size: 1.2em;
+  font-weight: 600;
+  font-size: 1.05em;
+}
+
+.team-tokens-header {
+  display: flex;
+  gap: 20px;
   font-weight: 600;
 }
 
+.team-tok.t0 {
+  color: #5dade2;
+}
+
+.team-tok.t1 {
+  color: #f5b041;
+}
+
 .turn-indicator {
-  background: #4caf50;
-  padding: 8px 16px;
+  background: #27ae60;
+  padding: 6px 14px;
   border-radius: 20px;
   font-weight: 600;
+  font-size: 0.95em;
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
 }
 
 .players-area {
   position: relative;
-  height: 400px;
-  margin-bottom: 30px;
+  height: 320px;
+  margin-bottom: 24px;
 }
 
 .player-area {
   position: absolute;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   border: 2px solid transparent;
-  transition: all 0.3s;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.player-area.team-0 {
+  border-color: rgba(93, 173, 226, 0.3);
+}
+
+.player-area.team-1 {
+  border-color: rgba(245, 176, 65, 0.3);
 }
 
 .player-area.active {
-  border-color: #4caf50;
-  box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+  border-color: #27ae60;
+  box-shadow: 0 0 18px rgba(39, 174, 96, 0.4);
 }
 
 .player-top {
@@ -112,40 +134,35 @@
 
 .player-name {
   font-weight: 600;
-  font-size: 1.1em;
-  margin-bottom: 5px;
+  font-size: 1em;
+  margin-bottom: 4px;
 }
 
 .player-cards-count {
-  font-size: 0.9em;
-  opacity: 0.8;
-  margin-bottom: 5px;
-}
-
-.player-score {
-  font-size: 0.9em;
-  opacity: 0.9;
+  font-size: 0.85em;
+  opacity: 0.85;
 }
 
 .trick-area {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 30px;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .trick-area h3 {
-  margin-top: 0;
+  margin: 0 0 12px 0;
   text-align: center;
+  font-size: 1.1em;
 }
 
 .trick-cards {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
-  min-height: 150px;
+  min-height: 130px;
   align-items: center;
 }
 
@@ -153,91 +170,99 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .trick-card {
-  width: 80px;
-  height: 112px;
-  background: white;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.trick-card.red {
-  color: #ff4444;
-}
-
-.trick-card.black {
-  color: #333;
-}
-
-.trick-card .card-rank {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.trick-card .card-suit {
-  font-size: 1.5em;
-  text-align: center;
-}
-
-.trick-player-name {
-  font-size: 0.85em;
-  opacity: 0.9;
-}
-
-.no-trick {
-  text-align: center;
-  opacity: 0.6;
-  font-style: italic;
-}
-
-.my-cards-area {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 20px;
-  backdrop-filter: blur(10px);
-}
-
-.my-cards-area h3 {
-  margin-top: 0;
-  text-align: center;
-}
-
-.cards-hand {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  padding: 20px 0;
-}
-
-.card {
-  width: 70px;
-  height: 98px;
-  background: white;
+  width: 72px;
+  height: 100px;
+  background: #fff;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 6px;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.trick-card.red {
+  color: #c0392b;
+}
+
+.trick-card.black {
+  color: #1a1a1a;
+}
+
+.trick-card .card-rank {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.trick-card .card-suit {
+  font-size: 1.4em;
+  text-align: center;
+}
+
+.trick-player-name {
+  font-size: 0.8em;
+  opacity: 0.9;
+}
+
+.no-trick {
+  text-align: center;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.my-cards-area {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.my-cards-area h3 {
+  margin: 0 0 6px 0;
+  text-align: center;
+  font-size: 1.05em;
+}
+
+.lead-suit-hint {
+  text-align: center;
+  font-size: 0.9em;
+  opacity: 0.85;
+  margin: 0 0 12px 0;
+}
+
+.cards-hand {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+}
+
+.card {
+  width: 64px;
+  height: 90px;
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px;
+  cursor: default;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   border: 2px solid transparent;
 }
 
 .card.red {
-  color: #ff4444;
+  color: #c0392b;
 }
 
 .card.black {
-  color: #333;
+  color: #1a1a1a;
 }
 
 .card.playable {
@@ -245,48 +270,68 @@
 }
 
 .card.playable:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  border-color: #4caf50;
+  transform: translateY(-8px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  border-color: #27ae60;
 }
 
 .card.disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
 .card.trump {
-  border-color: #ffd700;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  border-color: #f1c40f;
+  box-shadow: 0 0 8px rgba(241, 196, 15, 0.4);
 }
 
 .card-rank {
   font-weight: bold;
-  font-size: 1em;
+  font-size: 0.95em;
 }
 
 .card-suit-large {
-  font-size: 1.8em;
+  font-size: 1.5em;
   text-align: center;
 }
 
 @media (max-width: 768px) {
+  .game-board {
+    padding: 12px;
+  }
+
+  .game-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+  }
+
+  .team-tokens-header {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
   .players-area {
-    height: 300px;
+    height: 260px;
   }
 
   .player-area {
-    padding: 10px;
+    padding: 8px 12px;
     font-size: 0.9em;
   }
 
   .card {
-    width: 60px;
-    height: 84px;
+    width: 52px;
+    height: 74px;
+    padding: 4px;
+  }
+
+  .card-suit-large {
+    font-size: 1.2em;
   }
 
   .trick-card {
-    width: 60px;
-    height: 84px;
+    width: 56px;
+    height: 78px;
   }
 }
