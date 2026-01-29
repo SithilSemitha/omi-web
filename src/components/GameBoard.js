@@ -4,9 +4,19 @@ import './GameBoard.css';
 function GameBoard({ gameState, playerCards, onPlayCard, playerId, trumpSuit }) {
   const currentPlayer = gameState.players[gameState.currentPlayerIndex];
   const isMyTurn = currentPlayer && currentPlayer.id === playerId;
+  const leadSuit = gameState.leadSuit || null;
+
+  const canPlayCard = (card) => {
+    if (!isMyTurn) return false;
+    if (!leadSuit) return true;
+    const hasLeadSuit = playerCards.some((c) => c.suit === leadSuit);
+    if (!hasLeadSuit) return true;
+    return card.suit === leadSuit;
+  };
 
   const handleCardClick = (cardId) => {
-    if (isMyTurn && onPlayCard) {
+    const card = playerCards.find((c) => c.id === cardId);
+    if (card && canPlayCard(card) && onPlayCard) {
       onPlayCard(cardId);
     }
   };
@@ -29,13 +39,17 @@ function GameBoard({ gameState, playerCards, onPlayCard, playerId, trumpSuit }) 
     <div className="game-board">
       <div className="game-header">
         <div className="trump-display">
-          <span className="trump-label">Trump Suit:</span>
+          <span className="trump-label">Trump:</span>
           <span className={`trump-suit ${getSuitColor(trumpSuit)}`}>
             {getSuitSymbol(trumpSuit)}
           </span>
         </div>
-        <div className="round-info">Round: {gameState.round}</div>
-        {isMyTurn && <div className="turn-indicator">Your Turn!</div>}
+        <div className="round-info">Round {gameState.round}</div>
+        <div className="team-tokens-header">
+          <span className="team-tok t0">Team 1: {gameState.teamTokens?.[0] ?? 0}</span>
+          <span className="team-tok t1">Team 2: {gameState.teamTokens?.[1] ?? 0}</span>
+        </div>
+        {isMyTurn && <div className="turn-indicator">Your turn</div>}
       </div>
 
       <div className="players-area">
@@ -44,11 +58,10 @@ function GameBoard({ gameState, playerCards, onPlayCard, playerId, trumpSuit }) 
           const isCurrentPlayer = player.id === playerId;
           
           return (
-            <div key={player.id} className={`player-area player-${position} ${player.id === currentPlayer?.id ? 'active' : ''}`}>
+            <div key={player.id} className={`player-area player-${position} ${player.id === currentPlayer?.id ? 'active' : ''} team-${player.teamIndex ?? 0}`}>
               <div className="player-info">
                 <div className="player-name">{isCurrentPlayer ? 'You' : player.name}</div>
-                <div className="player-cards-count">{player.cardCount} cards</div>
-                <div className="player-score">Score: {player.score}</div>
+                <div className="player-cards-count">{Math.min(player.cardCount ?? 0, 8)} cards</div>
               </div>
             </div>
           );
@@ -79,15 +92,18 @@ function GameBoard({ gameState, playerCards, onPlayCard, playerId, trumpSuit }) 
       </div>
 
       <div className="my-cards-area">
-        <h3>Your Cards</h3>
+        <h3>Your hand ({playerCards.length}/8)</h3>
+        {leadSuit && (
+          <p className="lead-suit-hint">Follow suit: {getSuitSymbol(leadSuit)} if you have it</p>
+        )}
         <div className="cards-hand">
-          {playerCards.map((card) => {
-            const isPlayable = isMyTurn;
+          {playerCards.slice(0, 8).map((card) => {
+            const playable = canPlayCard(card);
             return (
               <div
                 key={card.id}
-                className={`card ${getSuitColor(card.suit)} ${isPlayable ? 'playable' : 'disabled'} ${card.suit === trumpSuit ? 'trump' : ''}`}
-                onClick={() => isPlayable && handleCardClick(card.id)}
+                className={`card ${getSuitColor(card.suit)} ${playable ? 'playable' : 'disabled'} ${card.suit === trumpSuit ? 'trump' : ''}`}
+                onClick={() => playable && handleCardClick(card.id)}
               >
                 <div className="card-rank">{card.rank}</div>
                 <div className="card-suit-large">{getSuitSymbol(card.suit)}</div>
