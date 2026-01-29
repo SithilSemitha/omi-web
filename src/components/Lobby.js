@@ -20,9 +20,9 @@ function Lobby({ onJoinRoom }) {
   return (
     <div className="lobby">
       <div className="lobby-container">
-        <h1>🎴 Omi Game</h1>
+        <h1>🎴 Sri Lankan Omi</h1>
         <p className="subtitle">
-          Create or join a room to play with 4 players. Rooms are made automatically when you join.
+          Partnership trick-taking game: 4 players, 8 cards each. Create or join a room to play.
         </p>
         
         <form onSubmit={handleSubmit} className="lobby-form">
