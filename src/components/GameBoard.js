@@ -101,7 +101,7 @@ function GameBoard({ gameState, playerCards, onPlayCard, playerId, trumpSuit }) 
             const playable = canPlayCard(card);
             return (
               <div
-                key={card.id}
+n                key={card.id}
                 className={`card ${getSuitColor(card.suit)} ${playable ? 'playable' : 'disabled'} ${card.suit === trumpSuit ? 'trump' : ''}`}
                 onClick={() => playable && handleCardClick(card.id)}
               >
