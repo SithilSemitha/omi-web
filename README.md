@@ -1,70 +1,109 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```markdown
+# 🃏 Omi Web
 
-## Available Scripts
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-In the project directory, you can run:
+A simple, interactive web-based layout for the traditional card game **Omi**, built using React.js. This project focuses on delivering a clean UI representation of the game board, player hands, and active cards.
 
-### `npm start`
+🌐 **Live Demo:** [Play/View Omi Web Here](https://omi-web.vercel.app)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Features
 
-### `npm test`
+* **Interactive Game Layout:** A thoughtfully designed user interface representing the classic Omi card game table.
+* **Component-Based UI:** Built with React's modular architecture for clean, maintainable frontend code.
+* **Responsive Design:** Styled with custom CSS to ensure the card table looks great on various screen sizes.
+* **Server Setup Included:** Contains a basic server directory structure to handle potential backend game logic or multiplayer features.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Tech Stack
 
-### `npm run build`
+* **Frontend:** React.js, HTML5, CSS3
+* **Backend:** Node.js / Express *(inside the `/server` directory)*
+* **Deployment:** Vercel
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Follow these steps to get a local copy up and running for development and testing.
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/SithilSemitha/omi-web.git](https://github.com/SithilSemitha/omi-web.git)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
 
-## Learn More
+2. **Navigate to the project directory:**
+```bash
+cd omi-web
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+3. **Install the frontend dependencies:**
+```bash
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. **Start the React development server:**
+```bash
+npm start
 
-### Making a Progressive Web App
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+5. **Open your browser:**
+Navigate to `http://localhost:3000` to view the application layout.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+*(Note: If you are running backend logic from the `/server` directory, you will need to open a separate terminal, navigate to `/server`, install its dependencies, and start the local server).*
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📂 Project Structure
 
-### `npm run build` fails to minify
+```text
+omi-web/
+├── public/               # Public static assets (index.html, icons)
+├── server/               # Backend logic and server setup
+├── src/                  # Main React frontend source code
+│   ├── components/       # Reusable UI components (Cards, Deck, Table)
+│   ├── App.js            # Main application root component
+│   └── index.js          # React DOM entry point
+├── package.json          # Frontend dependencies and scripts
+└── README.md             # Project documentation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! If you want to help add game logic, animations, or multiplayer capabilities, feel free to contribute.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 👤 Contact
+
+**Sithil Semitha** - [GitHub Profile](https://www.google.com/search?q=https://github.com/SithilSemitha)
+
+Project Link: [https://github.com/SithilSemitha/omi-web](https://github.com/SithilSemitha/omi-web)
+
