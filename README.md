@@ -4,8 +4,6 @@
 
 A simple, interactive web-based layout for the traditional card game **Omi**, built using React.js. This project focuses on delivering a clean UI representation of the game board, player hands, and active cards.
 
-🌐 **Live Demo:** [Play/View Omi Web Here](https://omi-web.vercel.app)
-
 ---
 
 ## ✨ Features
