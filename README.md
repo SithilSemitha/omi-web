@@ -2,11 +2,6 @@
 ```markdown
 # 🃏 Omi Web
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-
 A simple, interactive web-based layout for the traditional card game **Omi**, built using React.js. This project focuses on delivering a clean UI representation of the game board, player hands, and active cards.
 
 🌐 **Live Demo:** [Play/View Omi Web Here](https://omi-web.vercel.app)
